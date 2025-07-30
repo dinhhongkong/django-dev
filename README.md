@@ -21,3 +21,5 @@ INSTALLED_APPS = [
     # Các ứng dụng của bạn sẽ được thêm vào đây
 ]
 ```
+
+Lưu ý: Cấu hình đặt tên cấu hình trong file app của apps.py trong application
