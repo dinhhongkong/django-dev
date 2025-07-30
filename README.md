@@ -1,4 +1,6 @@
 # Tạo 1 app trong Django
+Tài liệu Django hướng dẫn: [Link](https://docs.djangoproject.com/en/5.2/intro/tutorial01/)
+
 Để tạo một app mới trong dự án Django, bạn sẽ sử dụng lệnh `startapp` của `manage.py`.
 
 ```bash
@@ -23,3 +25,34 @@ INSTALLED_APPS = [
 ```
 
 Lưu ý: Cấu hình đặt tên cấu hình trong file app của apps.py trong application
+
+# Setup database
+Tài liệu hướng dẫn setup kêt nối tới database: [Link](https://docs.djangoproject.com/en/5.2/topics/install/#database-installation)
+
+Nếu không biết chọn thư viện python nào để kết nối tới database như MSSQL, MySQL, MariaDB, Oracle, PostgreSQL,... thì đây là tài liệu: [Link](https://docs.djangoproject.com/en/5.2/topics/install/#database-installation)
+
+Vì Project này chọn Mysql làm DB thì chọn thư viện mysqlclient. Câu hỏi đặt ra là có nhiều thư viện tại sao chọn thư viện mysqlclient? Muốn biết được câu trả lời thì đọc ở đây [Link](https://docs.djangoproject.com/en/5.2/ref/databases/#mysql-notes)
+    
+```bash
+uv add mysqlclient
+```
+
+Vì Project này code và chạy ở Việt Nam, nên cần chỉnh múi giờ thành ở **settings.py**
+
+```python
+TIME_ZONE = "Asia/Ho_Chi_Minh"
+```
+
+Theo mặc định **INSTALLED_APPS** trong **settings.py** gồm có:
+
+```python
+INSTALLED_APPS = [
+    'django.contrib.admin', #Kích hoạt trang admin siêu tiện lợi của Django để quản lý dữ liệu trực tiếp qua giao diện web
+    'django.contrib.auth', #Xử lý xác thực người dùng (login, logout, quyền truy cập, nhóm người dùng)
+    'django.contrib.contenttypes', #Cho phép app tương tác linh hoạt với các model khác nhau, kể cả khi không biết chính xác kiểu
+    'django.contrib.sessions', #Quản lý session
+    'django.contrib.messages', #Gửi các thông báo (message) tạm thời cho người dùng, ví dụ: “Đăng nhập thành công!”
+    'django.contrib.staticfiles', #Hỗ trợ xử lý file tĩnh như CSS, JavaScript, hình ảnh
+]
+```
+
