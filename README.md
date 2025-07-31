@@ -6,6 +6,10 @@ Tài liệu Django hướng dẫn: [Link](https://docs.djangoproject.com/en/5.2/
 ```bash
 python manage.py startapp <name> [đường_dẫn_tùy_chọn]
 ```
+Ví dụ:
+```bash
+python manage.py startapp polls app/polls
+```
 Đăng kí app với project
 Sau khi bạn đã tạo ứng dụng, Django cần biết về sự tồn tại của nó. Việc này được thực hiện bằng cách "đăng ký" ứng dụng với dự án của bạn.
 
@@ -19,6 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'app.polls'
 
     # Các ứng dụng của bạn sẽ được thêm vào đây
 ]
@@ -55,4 +60,26 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles', #Hỗ trợ xử lý file tĩnh như CSS, JavaScript, hình ảnh
 ]
 ```
+
+Cấu hình kết nối MySQL trong **setting.py** như sau [link](https://docs.djangoproject.com/en/5.2/ref/databases/):
+
+```python
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "db_name",
+        "USER": "your_user_name",
+        "PASSWORD": "your_password",
+        "HOST": "127.0.0.1",
+        "PORT": "3306",
+    }
+}
+```
+
+Khi đã có sẵn table DB, muốn đỡ mất công tạo models bằng code tay thì dùng câu lệnh sau:
+
+```bash
+python manage.py inspectdb table1 table2 > your_app_name/models.py
+```
+
 
