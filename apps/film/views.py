@@ -1,19 +1,23 @@
-from django.http import JsonResponse
-from django.shortcuts import render
-from rest_framework.parsers import JSONParser
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from apps.film.models import Film
 from apps.film.serializers import FilmSerializer
 
 
-# Create your views here.
-def film_list(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        films = Film.objects.all()
-        serializer = FilmSerializer(films, many=True)
-        return JsonResponse(serializer.data, safe=False)
+class FilmListView(APIView):
+    def get(self, request):
+        try:
+            films = Film.objects.all()
+            return Response(FilmSerializer(films,many=True).data)
+        except Film.DoesNotExist:
+            return Response(
+                {
+                    "message": "NOT FOUND",
+                    "status": 400
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
-    return JsonResponse({'error': 'Method not allowed'}, status=405)
+

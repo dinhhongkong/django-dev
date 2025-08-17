@@ -1,6 +1,10 @@
 from rest_framework import serializers
 
+from apps.film.models import Film
 
-class FilmSerializer(serializers.Serializer):
-    fields = '__all__'
+
+class FilmSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Film
+        fields = '__all__'
 
